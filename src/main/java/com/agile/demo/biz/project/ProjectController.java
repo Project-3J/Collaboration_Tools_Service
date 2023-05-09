@@ -50,7 +50,7 @@ public class ProjectController {
 
         String userId = result.get("userId");
 
-        ProjectEntity projectEntity = projectService.createProject(projectDto);
+        ProjectEntity projectEntity = projectService.createProject(projectDto, userId);
         System.out.println("entity 성공");
 
         // AccountProject에 추가하기

@@ -22,12 +22,12 @@ import java.util.Optional;
         @Autowired
         private AccountProjectRepository accountprojectRepository;
 
-    public ProjectEntity createProject(ProjectDto projectDto) { // project 생성하기
+    public ProjectEntity createProject(ProjectDto projectDto, String userId) { // project 생성하기
 
         ProjectEntity project = new ProjectEntity();
         project.setTitle(projectDto.getTitle());
         // 현재 로그인한 아이디를 넣는 방법이 있는지 알아보기
-        project.setAssign(projectDto.getAssign());
+        project.setAssign(userId);
         return projectRepository.save(project);
     }
 
@@ -47,7 +47,6 @@ import java.util.Optional;
         ProjectEntity projectEntity = projectRepository.findById(np_seq).get();
         
         // 같은 프로젝트있는 사람들 중에 선택할 수 있도록 변경하기
-
 
         // 프로젝트를 업데이트합니다.
         projectEntity.setTitle(projectDto.getTitle());
