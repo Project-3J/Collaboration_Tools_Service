@@ -31,9 +31,9 @@ import java.util.Optional;
         return projectRepository.save(project);
     }
 
-    public List<ProjectEntity> getAllProjects() { // project의 모든 내용 조회
+    public List<ProjectEntity> getAllProjects(String userId) { // project의 모든 내용 조회
 
-            return projectRepository.findAll();
+            return projectRepository.findByAssign(userId);
         }
 
     public ProjectEntity getProjectByNp_seq(long np_seq) { // project를 np_seq로 조회하기

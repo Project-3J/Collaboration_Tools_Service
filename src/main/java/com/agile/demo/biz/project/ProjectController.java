@@ -74,8 +74,16 @@ public class ProjectController {
     }
     
     @GetMapping // Project의 모든 내용 조회하기
-    public ResponseEntity getAllProjects() {
-        return ResponseEntity.ok().body(projectService.getAllProjects()) ;
+    public ResponseEntity getAllProjects(@RequestHeader Map<String, String> httpHeaders) {
+        String jwtToken = httpHeaders.get("authorization");
+
+        JwtPayload jwtPayload = JwtUtils.initJwtPayload(jwtToken);
+
+        Map<String, String> result = new HashMap<>();
+        result.put("userId", Objects.requireNonNull(jwtPayload).getUserName());
+
+        String userId = result.get("userId");
+        return ResponseEntity.ok().body(projectService.getAllProjects(userId)) ;
     }
 
     @GetMapping("{np_seq}") // Project에서 np_seq로 조회하기
