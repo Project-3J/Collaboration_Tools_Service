@@ -3,15 +3,30 @@ package com.agile.demo.biz.project;
 import com.agile.demo.biz.project.account.AccountProjectDto;
 import com.agile.demo.biz.project.account.AccountProjectEntity;
 import com.agile.demo.biz.project.account.AccountProjectService;
+import com.agile.demo.core.jwt.JwtPayload;
+import com.agile.demo.core.jwt.JwtUtils;
+import com.agile.demo.security.CustomAuthenticationProvider;
+import com.auth0.jwt.JWT;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 @RestController
-@RequestMapping("/projects")
+@RequestMapping("/api/projects")
 public class ProjectController {
 
     @Autowired
@@ -20,8 +35,21 @@ public class ProjectController {
     @Autowired
     private AccountProjectService accountProjectService;
 
+    @Autowired
+    private CustomAuthenticationProvider customAuthenticationProvider;
+
     @PostMapping // 프로젝트 생성하는 경우
-    public ResponseEntity<?> createProject(@RequestBody ProjectDto projectDto) {
+    public ResponseEntity<?> createProject(@RequestHeader Map<String, String> httpHeaders, @RequestBody ProjectDto projectDto) {
+
+        String jwtToken = httpHeaders.get("authorization");
+
+        JwtPayload jwtPayload = JwtUtils.initJwtPayload(jwtToken);
+
+        Map<String, String> result = new HashMap<>();
+        result.put("userId", Objects.requireNonNull(jwtPayload).getUserName());
+
+        String userId = result.get("userId");
+
         ProjectEntity projectEntity = projectService.createProject(projectDto);
         System.out.println("entity 성공");
 
