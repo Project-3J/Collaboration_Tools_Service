@@ -42,8 +42,8 @@ public class AccountService {
     }
 
     // AccountEntity의 전체 내용 가져오기
-    public List<AccountEntity> getAllAccounts() {
-        List<AccountEntity> accountEntities = accountRepository.findAll();
+    public Optional<AccountEntity> getAllAccounts(String userId) {
+        Optional<AccountEntity> accountEntities = accountRepository.findByUserId(userId);
         return accountEntities;
     }
 

@@ -29,6 +29,14 @@ public class DataInitializer implements ApplicationRunner {
 						.name("test")
 						.phone("010-000-0000")
 				.build());
+		accountRepository.save(AccountEntity.builder()
+				.userId("test2")
+				.password(passwordEncoder.encode("test2"))
+				.role("SUPER")
+				.email("test@test.com")
+				.name("test")
+				.phone("010-000-0000")
+				.build());
 
 	}
 
