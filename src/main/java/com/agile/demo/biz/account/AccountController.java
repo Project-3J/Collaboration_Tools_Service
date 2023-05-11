@@ -50,6 +50,7 @@ public class AccountController {
         return ResponseEntity.ok(accountEntity);
     }
 
+    @DeleteMapping
     public void deleteAccount(@RequestHeader Map<String, String> httpHeaders){
         String jwtToken = httpHeaders.get("authorization");
         String userId = getUserId(jwtToken);
