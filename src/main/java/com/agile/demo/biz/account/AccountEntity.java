@@ -1,6 +1,8 @@
 package com.agile.demo.biz.account;
 
 import com.agile.demo.core.base.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "seq")
 public class AccountEntity extends BaseEntity {
 
     @Column(unique = true)

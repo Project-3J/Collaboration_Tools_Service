@@ -87,21 +87,21 @@ public class ProjectController {
     }
 
     @GetMapping("/view") // Project에서 np_seq로 조회하기
-    public ResponseEntity<ProjectEntity> getProjectByNp_seq(@RequestBody ProjectDto projectDto) {
-        Long np_seq = projectDto.getNp_seq();
+    public ResponseEntity<ProjectEntity> getProjectByNp_seq(@RequestParam long np_seq) {
+        System.out.println("선언이 잘된것 같아요");
         ProjectEntity projectEntity =projectService.getProjectByNp_seq(np_seq);
         return ResponseEntity.ok(projectEntity);
     }
 
     // 특정 값을의 내용을 수정
-    @PutMapping("{np_seq}") // Project의 내용 갱신하기
-    public ResponseEntity<?> updateProject(@PathVariable long np_seq, @RequestBody ProjectDto projectDto) {
+    @PutMapping // Project의 내용 갱신하기
+    public ResponseEntity<?> updateProject(@RequestParam long np_seq, @RequestBody ProjectDto projectDto) {
         ProjectEntity projectEntity = projectService.updateProject(np_seq, projectDto);
         return ResponseEntity.ok(projectEntity);
     }
 
-    @DeleteMapping("{np_seq}") // Project의 내용 삭제하기 - 연관된 Backlog, Task, AccountProject의 내용 같이 삭제
-    public ResponseEntity deleteProject(@PathVariable long np_seq){
+    @DeleteMapping // Project의 내용 삭제하기 - 연관된 Backlog, Task, AccountProject의 내용 같이 삭제
+    public ResponseEntity deleteProject(@RequestParam long np_seq){
         projectService.deleteProject(np_seq);
         return ResponseEntity.accepted().build();
     }

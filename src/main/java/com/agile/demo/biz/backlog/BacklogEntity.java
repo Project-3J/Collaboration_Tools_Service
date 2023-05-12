@@ -1,9 +1,7 @@
 package com.agile.demo.biz.backlog;
 import com.agile.demo.biz.project.ProjectEntity;
 import com.agile.demo.core.base.BaseEntity;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +16,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "seq")
 public class BacklogEntity extends BaseEntity {
 
     @Column(nullable = false, updatable = true, length = 100)
@@ -30,6 +29,9 @@ public class BacklogEntity extends BaseEntity {
 
     @Column(nullable = true, updatable = true, length = 255)
     private String description;
+
+    @Column(nullable = false, updatable = true)
+    private  String projectTitle;
 
     @ManyToOne
     @JsonIgnore

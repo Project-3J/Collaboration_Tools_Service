@@ -5,6 +5,8 @@ import com.agile.demo.biz.project.account.AccountProjectEntity;
 import com.agile.demo.biz.task.TaskEntity;
 import com.agile.demo.core.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,7 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "seq")
 public class ProjectEntity extends BaseEntity {
 
     @Column(nullable = false, updatable = true, length = 100)

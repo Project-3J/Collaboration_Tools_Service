@@ -26,8 +26,8 @@ public class BacklogController {
         return backlogService.getAllBacklog();
     }
 
-    @GetMapping("/{nb_seq}") // 백로그 출력 - 한개 확대시
-    public ResponseEntity<BacklogEntity> getBacklogByNb_seq(@PathVariable long nb_seq) {
+    @GetMapping("/backlog") // 백로그 출력 - 한개 확대시
+    public ResponseEntity<BacklogEntity> getBacklogByNb_seq(@RequestParam long nb_seq) {
         BacklogEntity backlogEntity = backlogService.getBacklogByNb_seq(nb_seq);
         return ResponseEntity.ok(backlogEntity);
     }
@@ -38,14 +38,14 @@ public class BacklogController {
         return backlogEntity;
     }
 
-    @PutMapping("{nb_seq}") // 백로그 수정
-    public ResponseEntity<?> updateBacklog(@PathVariable long nb_seq, @RequestBody BacklogDto backlogDto) {
+    @PutMapping // 백로그 수정
+    public ResponseEntity<?> updateBacklog(@RequestParam long nb_seq, @RequestBody BacklogDto backlogDto) {
         BacklogEntity backlogEntity = backlogService.updateBacklog(nb_seq, backlogDto);
         return ResponseEntity.ok(backlogEntity);
     }
 
-    @DeleteMapping("/{nb_seq}") // 백로그 삭제하기
-    public ResponseEntity deleteBacklog(@PathVariable long nb_seq){
+    @DeleteMapping // 백로그 삭제하기
+    public ResponseEntity deleteBacklog(@RequestParam long nb_seq){
         backlogService.deleteBacklog(nb_seq);
         return ResponseEntity.accepted().build();
     }

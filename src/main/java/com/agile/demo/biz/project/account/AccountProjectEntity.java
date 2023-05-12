@@ -4,6 +4,8 @@ import com.agile.demo.biz.account.AccountEntity;
 import com.agile.demo.biz.project.ProjectEntity;
 import com.agile.demo.core.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,6 +20,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "seq")
 public class AccountProjectEntity extends BaseEntity { // 어떤 사람이 어떤 프로젝트에 가입했는지를 유일하게 아는 클래스, entity
 
     @ManyToOne

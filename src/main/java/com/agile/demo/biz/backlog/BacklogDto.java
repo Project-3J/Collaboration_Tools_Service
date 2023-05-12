@@ -22,6 +22,8 @@ public class BacklogDto {
 
     private Long projectSeq;
 
+    private String projectTitle;
+
     public void setDeadline(String deadline) {
         try {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
