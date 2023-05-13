@@ -50,7 +50,7 @@ import java.util.Optional;
 
         // 프로젝트를 업데이트합니다.
         projectEntity.setTitle(projectDto.getTitle());
-        projectEntity.setAssign(projectDto.getAssign());
+        //projectEntity.setAssign(projectDto.getAssign());
 
         // 업데이트된 프로젝트를 저장하고 반환합니다.
         return projectRepository.save(projectEntity);

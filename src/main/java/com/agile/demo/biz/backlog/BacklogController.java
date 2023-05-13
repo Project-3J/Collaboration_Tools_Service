@@ -26,7 +26,7 @@ public class BacklogController {
         return backlogService.getAllBacklog();
     }
 
-    @GetMapping("/backlog") // 백로그 출력 - 한개 확대시
+    @GetMapping("/view") // 백로그 출력 - 한개 확대시
     public ResponseEntity<BacklogEntity> getBacklogByNb_seq(@RequestParam long nb_seq) {
         BacklogEntity backlogEntity = backlogService.getBacklogByNb_seq(nb_seq);
         return ResponseEntity.ok(backlogEntity);

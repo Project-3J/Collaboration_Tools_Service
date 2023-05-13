@@ -30,7 +30,7 @@ public class BacklogEntity extends BaseEntity {
     @Column(nullable = true, updatable = true, length = 255)
     private String description;
 
-    @Column(nullable = false, updatable = true)
+    @Column(nullable = true, updatable = true)
     private  String projectTitle;
 
     @ManyToOne
