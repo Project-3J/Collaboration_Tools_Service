@@ -86,8 +86,8 @@ public class ProjectController {
         return ResponseEntity.ok().body(projectService.getAllProjects(userId)) ;
     }
 
-    @GetMapping("/view") // Project에서 np_seq로 조회하기
-    public ResponseEntity<ProjectEntity> getProjectByNp_seq(@RequestParam long np_seq) {
+    @GetMapping("/view/{np_seq}") // Project에서 np_seq로 조회하기
+    public ResponseEntity<ProjectEntity> getProjectByNp_seq(@PathVariable long np_seq) {
         System.out.println("선언이 잘된것 같아요");
         ProjectEntity projectEntity =projectService.getProjectByNp_seq(np_seq);
         return ResponseEntity.ok(projectEntity);

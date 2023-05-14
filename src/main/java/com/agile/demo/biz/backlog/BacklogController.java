@@ -8,7 +8,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/backlogs")
+@RequestMapping("/api/backlogs")
 public class BacklogController {
 
     @Autowired
@@ -26,8 +26,8 @@ public class BacklogController {
         return backlogService.getAllBacklog();
     }
 
-    @GetMapping("/view") // 백로그 출력 - 한개 확대시
-    public ResponseEntity<BacklogEntity> getBacklogByNb_seq(@RequestParam long nb_seq) {
+    @GetMapping("/view/{nb_seq}") // 백로그 출력 - 한개 확대시
+    public ResponseEntity<BacklogEntity> getBacklogByNb_seq(@PathVariable long nb_seq) {
         BacklogEntity backlogEntity = backlogService.getBacklogByNb_seq(nb_seq);
         return ResponseEntity.ok(backlogEntity);
     }
@@ -38,8 +38,8 @@ public class BacklogController {
         return backlogEntity;
     }
 
-    @PutMapping // 백로그 수정
-    public ResponseEntity<?> updateBacklog(@RequestParam long nb_seq, @RequestBody BacklogDto backlogDto) {
+    @PutMapping("/{nb_seq}") // 백로그 수정
+    public ResponseEntity<?> updateBacklog(@PathVariable long nb_seq, @RequestBody BacklogDto backlogDto) {
         BacklogEntity backlogEntity = backlogService.updateBacklog(nb_seq, backlogDto);
         return ResponseEntity.ok(backlogEntity);
     }

@@ -70,17 +70,10 @@ public class BacklogService {
         // nb_seq 값으로 프로젝트를 조회합니다.
         BacklogEntity backlogEntity = backlogRepository.findById(nb_seq).get();
 
-        Optional<ProjectEntity> projectEntity = projectRepository.findById(backlogDto.getProjectSeq());
-        if (!projectEntity.isPresent()) {
-            throw new EntityNotFoundException("Project not found with id " + backlogDto.getProjectSeq()); // id를 찾을 수 없는 경우 발생
-        }
-
         // 프로젝트를 업데이트합니다.
         backlogEntity.setTitle(backlogDto.getTitle());
         backlogEntity.setDescription(backlogDto.getDescription());
         backlogEntity.setDeadline(backlogDto.getDeadline());
-        backlogEntity.setProjectTitle(backlogDto.getProjectTitle());
-        backlogEntity.setProject(projectEntity.get());
 
         // 업데이트된 프로젝트를 저장하고 반환합니다.
         return backlogRepository.save(backlogEntity);
