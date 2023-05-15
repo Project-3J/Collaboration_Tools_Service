@@ -47,6 +47,11 @@ public class AccountService {
         return accountEntities;
     }
 
+    public List<AccountEntity> getAllAccountss() {
+        List<AccountEntity> accountEntities = accountRepository.findAll();
+        return accountEntities;
+    }
+
     // AccountEntity에서 userId로 조회한 내용 가져오기
     public AccountEntity getAccountByUserId(String userId) {
         // np_seq 값으로 프로젝트를 조회합니다.

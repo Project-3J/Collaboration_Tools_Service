@@ -17,6 +17,7 @@ public class TaskController {
     @PostMapping // Task 생성하기
     public ResponseEntity<?> createTask(@RequestBody TaskDto taskDto) {
         TaskEntity taskEntity = taskService.createTask(taskDto);
+
         return ResponseEntity.accepted().build();
     }
 

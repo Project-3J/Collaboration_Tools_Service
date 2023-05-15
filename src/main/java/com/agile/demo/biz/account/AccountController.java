@@ -39,7 +39,11 @@ public class AccountController {
         String userId = getUserId(jwtToken);
         return accountService.getAllAccounts(userId);
     }
-    
+
+    @GetMapping("/view") // Account의 개인내용 출력
+    public List<AccountEntity> getAllAccount() {
+        return accountService.getAllAccountss();
+    }
     
     // update 하는 내용 추가 필요
     @PutMapping
