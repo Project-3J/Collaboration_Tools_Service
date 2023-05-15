@@ -52,7 +52,7 @@ public class TaskEntity extends BaseEntity {
     private ProjectEntity project;
 
     @ManyToOne
-    @JsonIgnore
+//    @JsonIgnore
     @JoinColumn(name = "nb_seq")
     private BacklogEntity backlogEntity;
 }

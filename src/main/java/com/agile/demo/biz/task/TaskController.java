@@ -20,10 +20,10 @@ public class TaskController {
         return ResponseEntity.accepted().build();
     }
 
-//    @GetMapping // Task의 모든 내용 조회하기
-//        public List<TaskEntity> getAllTask(@RequestHeader Map<String, String> httpHeaders) {
-//        return taskService.getAllTasks();
-//    }
+    @GetMapping // Task의 모든 내용 조회하기
+        public List<TaskEntity> getAllTask(@RequestHeader Map<String, String> httpHeaders) {
+        return taskService.getAllTasks();
+    }
 //
 //    @GetMapping("project/{np_seq}") // Task 출력하기 - 프로젝트별
 //    public List<TaskEntity> getProjectIdTask(@PathVariable long np_seq) {
@@ -31,8 +31,8 @@ public class TaskController {
 //        return taskEntity;
 //    }
 
-    @GetMapping // Task 조회하기 - 1개만
-    public ResponseEntity<TaskEntity> getIdTask(@RequestParam long nt_seq) {
+    @GetMapping("/view/{nt_seq}") // Task 조회하기 - 1개만
+    public ResponseEntity<TaskEntity> getIdTask(@PathVariable long nt_seq) {
         TaskEntity taskEntity = taskService.getTaskByNt_seq(nt_seq);
         return ResponseEntity.ok(taskEntity);
     }
