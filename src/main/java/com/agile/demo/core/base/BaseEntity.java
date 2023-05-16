@@ -22,14 +22,19 @@ public abstract class BaseEntity implements Serializable {
     private Long seq;
 
     @CreatedDate
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     @Column(name = "saved_at", nullable = true, insertable = true, updatable = false)
     private LocalDateTime savedAt;
 
     @LastModifiedDate
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss", timezone = "Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     @Column(name = "modified_at", nullable = true, insertable = true, updatable = true)
     private LocalDateTime modifiedAt;
+
+//    @LastModifiedDate
+//    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+//    @Column(name = "modified_at", nullable = true, insertable = true, updatable = true)
+//    private LocalDateTime At;
 
     @PrePersist
     public void setDate() {

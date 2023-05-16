@@ -28,6 +28,7 @@ import java.util.Optional;
         project.setTitle(projectDto.getTitle());
         // 현재 로그인한 아이디를 넣는 방법이 있는지 알아보기
         project.setAssign(userId);
+        project.setDeadline(projectDto.getDeadline());
         return projectRepository.save(project);
     }
 
@@ -51,7 +52,7 @@ import java.util.Optional;
         // 프로젝트를 업데이트합니다.
         projectEntity.setTitle(projectDto.getTitle());
         //projectEntity.setAssign(projectDto.getAssign());
-
+        projectEntity.setDeadline(projectDto.getDeadline());
         // 업데이트된 프로젝트를 저장하고 반환합니다.
         return projectRepository.save(projectEntity);
     }

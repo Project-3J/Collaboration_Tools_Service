@@ -5,6 +5,7 @@ import com.agile.demo.biz.project.account.AccountProjectEntity;
 import com.agile.demo.biz.task.TaskEntity;
 import com.agile.demo.core.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import lombok.NoArgsConstructor;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -30,6 +32,10 @@ public class ProjectEntity extends BaseEntity {
 
     @Column(nullable = true, updatable = true)
     private String assign;
+
+    @Column(nullable = true, updatable = true)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
+    private LocalDate deadline;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "project" , cascade = CascadeType.REMOVE) // project를 삭제하면 같이 삭제
     private List<BacklogEntity> backlogs;
