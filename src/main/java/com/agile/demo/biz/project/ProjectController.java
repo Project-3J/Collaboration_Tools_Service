@@ -94,14 +94,14 @@ public class ProjectController {
     }
 
     // 특정 값을의 내용을 수정
-    @PutMapping // Project의 내용 갱신하기
-    public ResponseEntity<?> updateProject(@RequestParam long np_seq, @RequestBody ProjectDto projectDto) {
+    @PutMapping("/{np_seq}") // Project의 내용 갱신하기
+    public ResponseEntity<?> updateProject(@PathVariable long np_seq, @RequestBody ProjectDto projectDto) {
         ProjectEntity projectEntity = projectService.updateProject(np_seq, projectDto);
         return ResponseEntity.ok(projectEntity);
     }
 
-    @DeleteMapping // Project의 내용 삭제하기 - 연관된 Backlog, Task, AccountProject의 내용 같이 삭제
-    public ResponseEntity deleteProject(@RequestParam long np_seq){
+    @DeleteMapping("/{np_seq}") // Project의 내용 삭제하기 - 연관된 Backlog, Task, AccountProject의 내용 같이 삭제
+    public ResponseEntity deleteProject(@PathVariable long np_seq){
         projectService.deleteProject(np_seq);
         return ResponseEntity.accepted().build();
     }

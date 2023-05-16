@@ -1,4 +1,5 @@
 package com.agile.demo.biz.task;
+import com.agile.demo.biz.account.AccountEntity;
 import com.agile.demo.biz.backlog.BacklogEntity;
 import com.agile.demo.biz.project.ProjectEntity;
 import com.agile.demo.biz.project.account.AccountProjectEntity;
@@ -40,11 +41,11 @@ public class TaskEntity extends BaseEntity {
     // accountProjectEntity에서 가져오도록?
     @ManyToOne
     @JoinColumn(name = "na_seq1", nullable = true)
-    private AccountProjectEntity presenter;
+    private AccountEntity presenter;
 
     @ManyToOne
     @JoinColumn(name = "na_seq2", nullable = true)
-    private AccountProjectEntity manager; // AccountProjectEntity에서 값을 받아오는 형태로?
+    private AccountEntity manager; // AccountProjectEntity에서 값을 받아오는 형태로?
 
     @ManyToOne
     @JsonBackReference

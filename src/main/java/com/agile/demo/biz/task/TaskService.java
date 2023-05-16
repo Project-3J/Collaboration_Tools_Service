@@ -30,7 +30,7 @@ public class TaskService {
     private ProjectRepository projectRepository;
 
     @Autowired
-    private AccountProjectRepository accountProjectRepository;
+    private AccountRepository accountRepository;
 
     public TaskEntity createTask(TaskDto taskDto) { // Task 생성하기
 
@@ -47,14 +47,14 @@ public class TaskService {
         }
 
         // manager, presenter의 값을 하나씩 조회 -> 리스트로 만들기
-        Optional<AccountProjectEntity> accountProjectEntityManager = accountProjectRepository.findUsers(taskDto.getManager(), projectEntity.get().getSeq());
-        if (!accountProjectEntityManager.isPresent()) {
-            throw new EntityNotFoundException("AccountProject not found with Manger Id " + taskDto.getManager()); // id를 찾을 수 없는 경우 발생
+        Optional<AccountEntity> accountEntityManager = accountRepository.findByUserId(taskDto.getManager());
+        if (!accountEntityManager.isPresent()) {
+            throw new EntityNotFoundException("Account not found with Manger Id " + taskDto.getManager()); // id를 찾을 수 없는 경우 발생
         }
 
-        Optional<AccountProjectEntity> accountProjectEntityPresenter = accountProjectRepository.findUsers(taskDto.getPresenter(), projectEntity.get().getSeq());
-        if (!accountProjectEntityPresenter.isPresent()) {
-            throw new EntityNotFoundException("AccountProject not found with Presenter Id " + taskDto.getPresenter()); // id를 찾을 수 없는 경우 발생
+        Optional<AccountEntity> accountEntityPresenter = accountRepository.findByUserId(taskDto.getPresenter());
+        if (!accountEntityPresenter.isPresent()) {
+            throw new EntityNotFoundException("Account not found with Presenter Id " + taskDto.getPresenter()); // id를 찾을 수 없는 경우 발생
         }
 
         TaskEntity taskEntity = new TaskEntity();
@@ -63,8 +63,8 @@ public class TaskService {
         taskEntity.setStoryProgress(taskDto.getStoryProgress());
         taskEntity.setDescription(taskDto.getDescription());
         taskEntity.setDeadline(taskDto.getDeadline()); // 작성자가 원하는 시간으로
-        taskEntity.setPresenter(accountProjectEntityPresenter.get());
-        taskEntity.setManager(accountProjectEntityManager.get());
+        taskEntity.setPresenter(accountEntityPresenter.get());
+        taskEntity.setManager(accountEntityManager.get());
         taskEntity.setBacklogEntity(backlogEntity.get());
         taskEntity.setProject(projectEntity.get());
         // BacklogEntity와 TaskEntity는 cascade 옵션으로 인해 자동 저장됩니다.
@@ -102,17 +102,17 @@ public class TaskService {
         taskEntity.setDescription(taskDto.getDescription());
 
         // manager, presenter의 값을 하나씩 조회 -> 리스트로 만들기
-        Optional<AccountProjectEntity> accountProjectEntityManager = accountProjectRepository.findUsers(taskDto.getManager(), taskDto.getProjectSeq());
-        if (!accountProjectEntityManager.isPresent()) {
+        Optional<AccountEntity> accountEntityManager = accountRepository.findByUserId(taskDto.getManager());
+        if (!accountEntityManager.isPresent()) {
             throw new EntityNotFoundException("AccountProject not found with Manger Id " + taskDto.getManager()); // id를 찾을 수 없는 경우 발생
         }
 
-        Optional<AccountProjectEntity> accountProjectEntityPresenter = accountProjectRepository.findUsers(taskDto.getPresenter(), taskDto.getProjectSeq());
-        if (!accountProjectEntityPresenter.isPresent()) {
+        Optional<AccountEntity> accountEntityPresenter = accountRepository.findByUserId(taskDto.getPresenter());
+        if (!accountEntityPresenter.isPresent()) {
             throw new EntityNotFoundException("AccountProject not found with Presenter Id " + taskDto.getPresenter()); // id를 찾을 수 없는 경우 발생
         }
-        taskEntity.setPresenter(accountProjectEntityPresenter.get());
-        taskEntity.setManager(accountProjectEntityManager.get());
+        taskEntity.setPresenter(accountEntityPresenter.get());
+        taskEntity.setManager(accountEntityManager.get());
 
         taskEntity.setStoryProgress(taskDto.getStoryProgress());
         taskEntity.setDeadline(taskDto.getDeadline());
