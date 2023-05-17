@@ -52,7 +52,7 @@ import java.util.Optional;
         // 프로젝트를 업데이트합니다.
         projectEntity.setTitle(projectDto.getTitle());
         //projectEntity.setAssign(projectDto.getAssign());
-        projectEntity.setDeadline(projectDto.getDeadline());
+        //projectEntity.setDeadline(projectDto.getDeadline());
         // 업데이트된 프로젝트를 저장하고 반환합니다.
         return projectRepository.save(projectEntity);
     }
