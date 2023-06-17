@@ -26,7 +26,7 @@ public class SampleController {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
-    @PostMapping("/02")
+    @PostMapping("/01")
     public void post(@RequestBody Map<String, Object> requestData) {
         System.out.println(requestData); // 내용을 받기만 하고 토큰을 보내지 않음
 
