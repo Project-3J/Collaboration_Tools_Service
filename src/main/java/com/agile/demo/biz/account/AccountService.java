@@ -42,12 +42,12 @@ public class AccountService {
     }
 
     // AccountEntity의 전체 내용 가져오기
-    public Optional<AccountEntity> getAllAccounts(String userId) {
+    public Optional<AccountEntity> getOneAccounts(String userId) {
         Optional<AccountEntity> accountEntities = accountRepository.findByUserId(userId);
         return accountEntities;
     }
 
-    public List<AccountEntity> getAllAccountss() {
+    public List<AccountEntity> getAllAccounts() {
         List<AccountEntity> accountEntities = accountRepository.findAll();
         return accountEntities;
     }

@@ -33,17 +33,22 @@ public class AccountController {
         return ResponseEntity.accepted().build();
     }
 
-    @GetMapping // Account의 개인내용 출력
-    public Optional<AccountEntity> getAllAccount(@RequestHeader Map<String, String> httpHeaders) {
+    @GetMapping("/view") // Account의 개인내용 출력
+    public Optional<AccountEntity> getOneAccount(@RequestHeader Map<String, String> httpHeaders) {
         String jwtToken = httpHeaders.get("authorization");
         String userId = getUserId(jwtToken);
-        return accountService.getAllAccounts(userId);
+        return accountService.getOneAccounts(userId);
     }
 
-    @GetMapping("/view") // Account의 개인내용 출력
-    public List<AccountEntity> getAllAccount() {
-        return accountService.getAllAccountss();
+    @GetMapping("/all") // Account의 전체 내용 = 회원가입 확인용
+    public List<AccountEntity> getAllAccount(@RequestHeader Map<String, String> httpHeaders) {
+        return accountService.getAllAccounts();
     }
+
+//    @GetMapping("/view") // Account의 개인내용 출력
+//    public List<AccountEntity> getAllAccount() {
+//        return accountService.getOneAccounts();
+//    }
     
     // update 하는 내용 추가 필요
     @PutMapping

@@ -14,5 +14,5 @@ public interface AccountRepository extends JpaRepository<AccountEntity, Long> {
 
     boolean existsByUserId(String userId);
 
-    List<AccountEntity> findAll();
+    //List<AccountEntity> findAll();
 }
