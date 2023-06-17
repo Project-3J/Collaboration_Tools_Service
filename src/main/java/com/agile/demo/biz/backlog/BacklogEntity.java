@@ -2,10 +2,7 @@ package com.agile.demo.biz.backlog;
 import com.agile.demo.biz.project.ProjectEntity;
 import com.agile.demo.core.base.BaseEntity;
 import com.fasterxml.jackson.annotation.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +10,7 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "NBacklog")
 @Data
+@EqualsAndHashCode(callSuper=false) // @Data에서 경고 사라짐
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

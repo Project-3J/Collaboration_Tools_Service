@@ -6,10 +6,7 @@ import com.agile.demo.core.base.BaseEntity;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -17,6 +14,7 @@ import java.io.Serializable;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper=false) // @Data에서 경고 사라짐
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

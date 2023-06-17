@@ -8,10 +8,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
@@ -21,6 +18,7 @@ import java.util.List;
 @Entity
 @Table(name = "NProject")
 @Data
+@EqualsAndHashCode(callSuper=false) // @Data에서 경고 사라짐
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

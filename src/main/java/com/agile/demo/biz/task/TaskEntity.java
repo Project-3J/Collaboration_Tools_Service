@@ -5,10 +5,7 @@ import com.agile.demo.biz.project.ProjectEntity;
 import com.agile.demo.biz.project.account.AccountProjectEntity;
 import com.agile.demo.core.base.BaseEntity;
 import com.fasterxml.jackson.annotation.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -17,6 +14,7 @@ import java.util.List;
 @Entity
 @Table(name = "NTask")
 @Data
+@EqualsAndHashCode(callSuper=false) // @Data에서 경고 사라짐
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
